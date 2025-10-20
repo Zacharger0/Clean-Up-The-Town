@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://beeborvl1twui"]
+[gd_scene load_steps=6 format=3 uid="uid://beeborvl1twui"]
 
 [ext_resource type="Script" uid="uid://ovft8f0jcapa" path="res://trash/cardboard_box.gd" id="1_1sv8q"]
 [ext_resource type="Texture2D" uid="uid://bfssnwu1tfqjo" path="res://sprites/cardboard.png" id="1_unia5"]
+[ext_resource type="Script" uid="uid://clwapb7m04lyy" path="res://trash/trash_wobble.gd" id="3_je1ax"]
+[ext_resource type="Script" uid="uid://b3u2ywjnt1wp4" path="res://trash/magnet.gd" id="4_1m62e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unia5"]
 size = Vector2(6, 5)
@@ -11,10 +13,18 @@ y_sort_enabled = true
 collision_layer = 4
 script = ExtResource("1_1sv8q")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Scripting" type="Node2D" parent="."]
+
+[node name="Wobble" type="Node2D" parent="Scripting"]
+script = ExtResource("3_je1ax")
+
+[node name="Sprite2D" type="Sprite2D" parent="Scripting/Wobble"]
 y_sort_enabled = true
 texture = ExtResource("1_unia5")
 offset = Vector2(0, -10)
+
+[node name="Magnet" type="Node2D" parent="Scripting"]
+script = ExtResource("4_1m62e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.38419e-07, 2.5)

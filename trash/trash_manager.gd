@@ -1,26 +1,41 @@
 extends Node2D
 
 @export var cardboard_box: PackedScene
+@onready var player: CharacterBody2D = get_parent().get_node("Player")
 
 const MAX_TRASH_AMOUNT = 25
+
 var current_trash_amount = 0
+var spawn_timer: Timer
+var random_amount_area = 100
 
-func _physics_process(delta: float) -> void:
-	var random_x = randf_range(-100, 100)
-	var random_y = randf_range(-100, 100)
-	spawn_trash(random_x, random_y)
+func _ready() -> void:
+	# Create and start a timer for spawning
+	spawn_timer = Timer.new()
+	spawn_timer.wait_time = 0
+	spawn_timer.autostart = true
+	spawn_timer.one_shot = false
+	add_child(spawn_timer)
 
-func spawn_trash(random_x, random_y):
-	if cardboard_box != null and current_trash_amount < MAX_TRASH_AMOUNT:
+	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
+
+func _on_spawn_timer_timeout() -> void:
+	# Only spawn if we haven’t reached the limit
+	if current_trash_amount < MAX_TRASH_AMOUNT:
+		var random_x = randf_range(-random_amount_area, random_amount_area)
+		var random_y = randf_range(-random_amount_area, random_amount_area)
+		spawn_trash(random_x, random_y)
+
+func spawn_trash(random_x: float, random_y: float) -> void:
+	if cardboard_box != null:
 		var trash = cardboard_box.instantiate()
 		add_child(trash)
-		trash.position = Vector2(random_x, random_y)
+		trash.player = player  
+		trash.position = Vector2(random_x, random_y)  
 		trash.trash_collected.connect(_on_trash_collected)
 		current_trash_amount += 1
-	elif cardboard_box == null:
+	else:
 		print("No cardboard box assigned")
-		return
-
+				
 func _on_trash_collected() -> void:
 	current_trash_amount -= 1
-	
