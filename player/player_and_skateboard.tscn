@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca84v6uiujkuq"]
+
+[ext_resource type="PackedScene" uid="uid://b0fjlhu8nq4gp" path="res://player/player.tscn" id="1_db80f"]
+[ext_resource type="Script" uid="uid://dlgu850ce6prd" path="res://player/line_script.gd" id="1_yp8pi"]
+[ext_resource type="PackedScene" uid="uid://jyudah3uhqon" path="res://player/SkateboardRig.tscn" id="2_yp8pi"]
+
+[sub_resource type="GDScript" id="GDScript_db80f"]
+
+[node name="Player and Skateboard" type="CharacterBody2D"]
+script = ExtResource("1_yp8pi")
+
+[node name="Player" parent="." instance=ExtResource("1_db80f")]
+position = Vector2(22, 16)
+
+[node name="Skateboard_Trashcan" parent="." instance=ExtResource("2_yp8pi")]
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-2, 4)
+points = PackedVector2Array(24, 0, 2, 0)
+width = 1.0
+default_color = Color(1, 1, 1, 0.521569)
+joint_mode = 2
+script = SubResource("GDScript_db80f")

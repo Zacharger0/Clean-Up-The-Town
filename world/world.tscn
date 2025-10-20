@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnnngjnnpdd5j"]
+
+[ext_resource type="PackedScene" uid="uid://ca84v6uiujkuq" path="res://player/player_and_skateboard.tscn" id="2_mmdvd"]
+[ext_resource type="Texture2D" uid="uid://bhn8cks8ccshy" path="res://sprites/grass_background.png" id="3_4717r"]
+[ext_resource type="PackedScene" uid="uid://c14tpf1anhgjx" path="res://trash/trash_manager.tscn" id="4_h5o24"]
+
+[sub_resource type="TileSet" id="TileSet_tcf2h"]
+
+[node name="World" type="Node2D"]
+
+[node name="Parallax Background" type="Parallax2D" parent="."]
+repeat_size = Vector2(480, 270)
+
+[node name="Grass" type="TextureRect" parent="Parallax Background"]
+offset_right = 480.0
+offset_bottom = 270.0
+texture = ExtResource("3_4717r")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_mmdvd")]
+position = Vector2(100, 17)
+
+[node name="Trash Manager" parent="." instance=ExtResource("4_h5o24")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_tcf2h")

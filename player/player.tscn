@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0fjlhu8nq4gp"]
+
+[ext_resource type="Texture2D" uid="uid://bfw47tg5ulpqc" path="res://sprites/kid.png" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://wus8nfvwd3h2" path="res://player/player.gd" id="1_rkbax"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
+radius = 11.0
+height = 36.0
+
+[node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_mask = 12
+script = ExtResource("1_rkbax")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 14)
+texture = ExtResource("1_oul6g")
+offset = Vector2(0, -20)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+shape = SubResource("CapsuleShape2D_rkbax")
+debug_color = Color(0.894301, 0.25528, 0.496907, 0.42)
