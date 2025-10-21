@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnnngjnnpdd5j"]
+[gd_scene load_steps=8 format=3 uid="uid://bnnngjnnpdd5j"]
 
 [ext_resource type="PackedScene" uid="uid://b0fjlhu8nq4gp" path="res://player/player.tscn" id="2_h5o24"]
 [ext_resource type="Texture2D" uid="uid://bhn8cks8ccshy" path="res://sprites/grass_background.png" id="3_4717r"]
 [ext_resource type="PackedScene" uid="uid://jyudah3uhqon" path="res://player/SkateboardRig.tscn" id="3_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://c14tpf1anhgjx" path="res://trash/trash_manager.tscn" id="4_h5o24"]
 [ext_resource type="Script" uid="uid://dlgu850ce6prd" path="res://player/line_script.gd" id="5_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://beeborvl1twui" path="res://trash/cardboard_box.tscn" id="6_fn3g3"]
 
 [sub_resource type="TileSet" id="TileSet_tcf2h"]
 
@@ -21,6 +22,7 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="PLAYER" type="Node2D" parent="."]
+position = Vector2(68, 35)
 
 [node name="Player" parent="PLAYER" instance=ExtResource("2_h5o24")]
 position = Vector2(22, 16)
@@ -40,3 +42,147 @@ script = ExtResource("5_mmdvd")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_tcf2h")
+
+[node name="Cardboard Box" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(155, 46)
+
+[node name="Cardboard Box2" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(187, 14)
+
+[node name="Cardboard Box3" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(9, 92)
+
+[node name="Cardboard Box4" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(195, 107)
+
+[node name="Cardboard Box5" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(195, 191)
+
+[node name="Cardboard Box6" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(227, 159)
+
+[node name="Cardboard Box7" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(49, 237)
+
+[node name="Cardboard Box8" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(235, 252)
+
+[node name="Cardboard Box9" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(420, 53)
+
+[node name="Cardboard Box10" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(452, 21)
+
+[node name="Cardboard Box11" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(274, 99)
+
+[node name="Cardboard Box12" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(460, 114)
+
+[node name="Cardboard Box13" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(460, 198)
+
+[node name="Cardboard Box14" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(492, 166)
+
+[node name="Cardboard Box15" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(314, 244)
+
+[node name="Cardboard Box16" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(500, 259)
+
+[node name="Cardboard Box17" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(517, 217)
+
+[node name="Cardboard Box18" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(549, 185)
+
+[node name="Cardboard Box19" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(371, 263)
+
+[node name="Cardboard Box20" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(557, 278)
+
+[node name="Cardboard Box21" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(557, 362)
+
+[node name="Cardboard Box22" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(589, 330)
+
+[node name="Cardboard Box23" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(411, 408)
+
+[node name="Cardboard Box24" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(597, 423)
+
+[node name="Cardboard Box25" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(782, 224)
+
+[node name="Cardboard Box26" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(814, 192)
+
+[node name="Cardboard Box27" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(636, 270)
+
+[node name="Cardboard Box28" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(822, 285)
+
+[node name="Cardboard Box29" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(822, 369)
+
+[node name="Cardboard Box30" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(854, 337)
+
+[node name="Cardboard Box31" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(676, 415)
+
+[node name="Cardboard Box32" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(862, 430)
+
+[node name="Cardboard Box33" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(557, 36)
+
+[node name="Cardboard Box34" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(589, 4)
+
+[node name="Cardboard Box35" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(411, 82)
+
+[node name="Cardboard Box36" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(597, 97)
+
+[node name="Cardboard Box37" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(597, 181)
+
+[node name="Cardboard Box38" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(629, 149)
+
+[node name="Cardboard Box39" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(451, 227)
+
+[node name="Cardboard Box40" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(637, 242)
+
+[node name="Cardboard Box41" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(822, 43)
+
+[node name="Cardboard Box42" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(854, 11)
+
+[node name="Cardboard Box43" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(676, 89)
+
+[node name="Cardboard Box44" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(862, 104)
+
+[node name="Cardboard Box45" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(862, 188)
+
+[node name="Cardboard Box46" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(894, 156)
+
+[node name="Cardboard Box47" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(716, 234)
+
+[node name="Cardboard Box48" parent="." instance=ExtResource("6_fn3g3")]
+position = Vector2(902, 249)

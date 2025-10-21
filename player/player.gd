@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var player_sprite: Sprite2D = $Sprite2D
 
 var speed = 150
-var time = 0
+var time = 1
 var freq = 25
 
 var input_direction

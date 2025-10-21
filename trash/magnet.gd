@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var player: CharacterBody2D = $Player
+@onready var player: Node2D = $PLAYER
+
 var speed = 10
 
 func _process(delta: float) -> void:
