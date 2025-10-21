@@ -2,9 +2,12 @@ extends Area2D
 
 signal trash_collected
 
-var move_speed = 50.0  # SPEED THAT TRASH MOVES TO PLAYER
+var move_speed = 500.0  # SPEED THAT TRASH MOVES TO PLAYER
 var activation_distance = 100.0  # MAX DISTANCE FOR MAGNET EFFECT
 var player: CharacterBody2D
+var coyote_time = 2.0  # HOW LONG MAGNET LASTS AFTER RELEASE
+var coyote_timer = 0.0  # TRACKS COYOTE TIME LEFT
+var is_magnet_active = false  # CONTROLS MAGNET STATE
 
 func _ready() -> void:
 	# CONNECTS body_entered SIGNAL
@@ -19,15 +22,22 @@ func _physics_process(delta: float) -> void:
 	if player:
 		# CALCULATE DISTANCE TO PLAYER
 		var distance = global_position.distance_to(player.global_position)
-		# CHECKS IF SPACEBAR IS HELD DOWN /AND/ TRASH IS IN RANGE
+		# CHECKS IF SPACEBAR IS HELD /AND/ TRASH IN RANGE
 		if Input.is_action_pressed("ui_accept") and distance < activation_distance:
-			# CALCULATES DIRECTION TOWARD PLAYER
+			is_magnet_active = true
+			coyote_timer = coyote_time  # RESET COYOTE TIME
+		elif coyote_timer > 0.0 and distance < activation_distance:
+			is_magnet_active = true  # KEEP MAGNET ON DURING COYOTE
+			coyote_timer -= delta  # DECREASE TIMER
+		else:
+			is_magnet_active = false  # TURN OFF MAGNET
+
+		# MOVE TO PLAYER IF MAGNET ACTIVE
+		if is_magnet_active:
 			var direction = (player.global_position - global_position).normalized()
-			# MOVES TO PLAYER
 			position += direction * move_speed * delta
 
 func _on_body_entered(body: Node) -> void:
 	if body is CharacterBody2D:
 		trash_collected.emit()
-		
 		queue_free()
