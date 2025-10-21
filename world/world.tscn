@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnnngjnnpdd5j"]
+[gd_scene load_steps=6 format=3 uid="uid://bnnngjnnpdd5j"]
 
 [ext_resource type="PackedScene" uid="uid://b0fjlhu8nq4gp" path="res://player/player.tscn" id="2_h5o24"]
 [ext_resource type="Texture2D" uid="uid://bhn8cks8ccshy" path="res://sprites/grass_background.png" id="3_4717r"]
-[ext_resource type="PackedScene" uid="uid://jyudah3uhqon" path="res://player/SkateboardRig.tscn" id="3_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://c14tpf1anhgjx" path="res://trash/trash_manager.tscn" id="4_h5o24"]
-[ext_resource type="Script" uid="uid://dlgu850ce6prd" path="res://player/line_script.gd" id="5_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://beeborvl1twui" path="res://trash/cardboard_box.tscn" id="6_fn3g3"]
 
 [sub_resource type="TileSet" id="TileSet_tcf2h"]
@@ -24,18 +22,8 @@ metadata/_edit_use_anchors_ = true
 [node name="PLAYER" type="Node2D" parent="."]
 position = Vector2(68, 35)
 
-[node name="Player" parent="PLAYER" instance=ExtResource("2_h5o24")]
+[node name="Player" parent="PLAYER" groups=["player"] instance=ExtResource("2_h5o24")]
 position = Vector2(22, 16)
-
-[node name="Skateboard" parent="PLAYER" instance=ExtResource("3_mmdvd")]
-
-[node name="Line2D" type="Line2D" parent="PLAYER"]
-position = Vector2(-2, 4)
-points = PackedVector2Array(24, 0, 2, 0)
-width = 1.0
-default_color = Color(1, 1, 1, 0.521569)
-joint_mode = 2
-script = ExtResource("5_mmdvd")
 
 [node name="Trash Manager" parent="." instance=ExtResource("4_h5o24")]
 
