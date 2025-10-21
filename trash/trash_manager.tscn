@@ -11,5 +11,5 @@ script = ExtResource("1_8bjry")
 cardboard_box = ExtResource("2_7m7hp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_unia5")
+disabled = true

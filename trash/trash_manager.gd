@@ -4,7 +4,6 @@ extends Node2D
 @onready var player: CharacterBody2D = get_parent().get_node("Player")
 
 const MAX_TRASH_AMOUNT = 25
-
 var current_trash_amount = 0
 var spawn_timer: Timer
 var random_amount_area = 100
@@ -31,7 +30,7 @@ func spawn_trash(random_x: float, random_y: float) -> void:
 		var trash = cardboard_box.instantiate()
 		add_child(trash)
 		trash.player = player  
-		trash.position = Vector2(random_x, random_y)  
+		trash.position = Vector2(random_x, random_y)  # Set position directly to random coordinates
 		trash.trash_collected.connect(_on_trash_collected)
 		current_trash_amount += 1
 	else:

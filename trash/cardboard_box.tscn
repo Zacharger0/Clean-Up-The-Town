@@ -15,16 +15,16 @@ script = ExtResource("1_1sv8q")
 
 [node name="Scripting" type="Node2D" parent="."]
 
-[node name="Wobble" type="Node2D" parent="Scripting"]
+[node name="Magnet" type="Node2D" parent="Scripting"]
+script = ExtResource("4_1m62e")
+
+[node name="Wobble" type="Node2D" parent="Scripting/Magnet"]
 script = ExtResource("3_je1ax")
 
-[node name="Sprite2D" type="Sprite2D" parent="Scripting/Wobble"]
+[node name="Sprite2D" type="Sprite2D" parent="Scripting/Magnet/Wobble"]
 y_sort_enabled = true
 texture = ExtResource("1_unia5")
 offset = Vector2(0, -10)
-
-[node name="Magnet" type="Node2D" parent="Scripting"]
-script = ExtResource("4_1m62e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.38419e-07, 2.5)
