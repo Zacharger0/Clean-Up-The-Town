@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dql8xwguayv7t"]
+
+[ext_resource type="Script" uid="uid://biqqilg5glp5t" path="res://trash/apple.gd" id="1_iasfx"]
+[ext_resource type="Script" uid="uid://b3u2ywjnt1wp4" path="res://trash/magnet.gd" id="2_jh4q1"]
+[ext_resource type="Script" uid="uid://clwapb7m04lyy" path="res://trash/trash_wobble.gd" id="3_6sky0"]
+[ext_resource type="Texture2D" uid="uid://c5qo8sbjux1uk" path="res://sprites/apple.png" id="4_wgy3l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unia5"]
+size = Vector2(6, 5)
+
+[node name="Apple" type="Area2D"]
+y_sort_enabled = true
+collision_layer = 4
+script = ExtResource("1_iasfx")
+
+[node name="Scripting" type="Node2D" parent="."]
+
+[node name="Magnet" type="Node2D" parent="Scripting"]
+script = ExtResource("2_jh4q1")
+
+[node name="Wobble" type="Node2D" parent="Scripting/Magnet"]
+script = ExtResource("3_6sky0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Scripting/Magnet/Wobble"]
+y_sort_enabled = true
+texture = ExtResource("4_wgy3l")
+offset = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.38419e-07, 2.5)
+shape = SubResource("RectangleShape2D_unia5")

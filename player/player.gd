@@ -2,22 +2,53 @@ extends CharacterBody2D
 
 @onready var player_sprite: Sprite2D = $Sprite2D
 
-var speed = 150
-var time = 1
-var freq = 25
+var base_speed := 150.0
+var max_speed := 320.0
+var acceleration := 800.0
+var deceleration := 900.0
+var drift_factor := 10.0  # higher = tighter control, lower = more slide
 
-var input_direction
-var facing_direction = Vector2(1, 0)
+var current_speed := 0.0
+var time := 0.0
+var wobble_timer := 0.0
+var wobble_delay := 0.2  # delay before wobble starts after moving
+
+var input_direction := Vector2.ZERO
+var facing_direction := Vector2(1, 0)
+
+func _ready() -> void:
+	var debug_overlay = get_tree().get_root().get_node_or_null("World/DebugOverlay")
+	if debug_overlay:
+		debug_overlay.tracked_object = self
 
 func get_input(delta):
 	input_direction = Input.get_vector("left", "right", "up", "down")
-	velocity = input_direction * speed
 
-	if velocity != Vector2.ZERO:
-		wobble(delta)
+	# --- Smooth acceleration and deceleration ---
+	if Input.is_action_pressed("sprint") and input_direction != Vector2.ZERO:
+		current_speed = lerp(current_speed, max_speed, delta * 2.5)
+	elif input_direction != Vector2.ZERO:
+		current_speed = lerp(current_speed, base_speed, delta * 3.5)
 	else:
-		rotation = 0
+		current_speed = lerp(current_speed, 0.0, delta * 6.0)
 
+	# --- Apply drifted velocity ---
+	var target_velocity = input_direction * current_speed
+	velocity = lerp(velocity, target_velocity, delta * drift_factor)
+
+	# --- Handle wobble delay ---
+	if velocity.length() > 5:
+		wobble_timer += delta
+	else:
+		wobble_timer = 0.0
+
+	# --- Wobble and lean only when moving left/right, after delay ---
+	if wobble_timer > wobble_delay and abs(velocity.x) > abs(velocity.y):
+		wobble_and_lean(delta)
+	else:
+		rotation = lerp(rotation, 0.0, delta * 8.0)
+
+	# --- Update facing direction ---
 	if input_direction != Vector2.ZERO:
 		facing_direction = input_direction.normalized()
 
@@ -26,10 +57,23 @@ func get_input(delta):
 	elif facing_direction.x < 0:
 		player_sprite.flip_h = true
 
+
 func _physics_process(delta: float) -> void:
 	get_input(delta)
 	move_and_slide()
 
-func wobble(delta):
-	rotation = sin(time * freq) * 0.1
+
+func wobble_and_lean(delta):
+	# Wobble decreases at high speed
+	var speed_ratio = clamp(current_speed / max_speed, 0.0, 1.0)
+	var wobble_strength = lerp(0.1, 0.02, speed_ratio)
+	var wobble_speed = lerp(18.0, 8.0, speed_ratio)
+
+	# Smooth, delayed wobble
+	var wobble = sin(time * wobble_speed) * wobble_strength
+
+	# Lean into turn based on horizontal velocity
+	var lean_amount = clamp(velocity.x / max_speed, -0.25, 0.25)
+
+	rotation = wobble + lean_amount
 	time += delta

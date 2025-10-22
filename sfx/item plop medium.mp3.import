@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ci5js510pixmm"
+path="res://.godot/imported/item plop medium.mp3-15f3f429948e6b0ad694694e0b4a245f.mp3str"
+
+[deps]
+
+source_file="res://sfx/item plop medium.mp3"
+dest_files=["res://.godot/imported/item plop medium.mp3-15f3f429948e6b0ad694694e0b4a245f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

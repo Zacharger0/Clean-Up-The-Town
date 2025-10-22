@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxamj7rjok3uo"]
+
+[ext_resource type="Script" uid="uid://n58poxhprfet" path="res://trash/trash_bag.gd" id="1_x0klw"]
+[ext_resource type="Script" uid="uid://b3u2ywjnt1wp4" path="res://trash/magnet.gd" id="2_vu2bm"]
+[ext_resource type="Script" uid="uid://clwapb7m04lyy" path="res://trash/trash_wobble.gd" id="3_2s87t"]
+[ext_resource type="Texture2D" uid="uid://qou5ll8gg4ua" path="res://sprites/trashbag.png" id="4_x0klw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unia5"]
+size = Vector2(6, 5)
+
+[node name="Trash Bag" type="Area2D"]
+y_sort_enabled = true
+collision_layer = 4
+script = ExtResource("1_x0klw")
+
+[node name="Scripting" type="Node2D" parent="."]
+
+[node name="Magnet" type="Node2D" parent="Scripting"]
+script = ExtResource("2_vu2bm")
+
+[node name="Wobble" type="Node2D" parent="Scripting/Magnet"]
+script = ExtResource("3_2s87t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Scripting/Magnet/Wobble"]
+y_sort_enabled = true
+texture = ExtResource("4_x0klw")
+offset = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.38419e-07, 2.5)
+shape = SubResource("RectangleShape2D_unia5")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8najk0kfhp7k"
+path="res://.godot/imported/item plop normal.mp3-2931ccd0c8b1b5d726b23193f262f23a.mp3str"
+
+[deps]
+
+source_file="res://sfx/item plop normal.mp3"
+dest_files=["res://.godot/imported/item plop normal.mp3-2931ccd0c8b1b5d726b23193f262f23a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

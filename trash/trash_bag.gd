@@ -2,8 +2,7 @@ extends Area2D
 
 signal trash_collected
 
-@onready var sfx_item_plop_medium: AudioStreamPlayer2D = $"../../../SFX/SFX Item Plop Medium"
-
+@onready var sfx_item_plop_low: AudioStreamPlayer2D = $"../../../SFX/SFX Item Plop Low"
 
 var move_speed = 500.0  # SPEED THAT TRASH MOVES TO PLAYER
 var activation_distance = 100.0  # MAX DISTANCE FOR MAGNET EFFECT
@@ -43,5 +42,5 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node) -> void:
 	if body is CharacterBody2D:
 		trash_collected.emit()
-		sfx_item_plop_medium.play()
+		sfx_item_plop_low.play()
 		queue_free()

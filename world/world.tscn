@@ -1,11 +1,97 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnnngjnnpdd5j"]
+[gd_scene load_steps=13 format=3 uid="uid://bnnngjnnpdd5j"]
 
+[ext_resource type="Texture2D" uid="uid://bps5gmolkbsah" path="res://sprites/grass_background_1021.png" id="1_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://b0fjlhu8nq4gp" path="res://player/player.tscn" id="2_h5o24"]
-[ext_resource type="Texture2D" uid="uid://bhn8cks8ccshy" path="res://sprites/grass_background.png" id="3_4717r"]
+[ext_resource type="PackedScene" uid="uid://jyudah3uhqon" path="res://player/SkateboardRig.tscn" id="3_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://c14tpf1anhgjx" path="res://trash/trash_manager.tscn" id="4_h5o24"]
+[ext_resource type="PackedScene" uid="uid://bxamj7rjok3uo" path="res://trash/trash_bag.tscn" id="5_4papg"]
+[ext_resource type="PackedScene" uid="uid://dql8xwguayv7t" path="res://trash/apple.tscn" id="6_ai45w"]
 [ext_resource type="PackedScene" uid="uid://beeborvl1twui" path="res://trash/cardboard_box.tscn" id="6_fn3g3"]
+[ext_resource type="AudioStream" uid="uid://c8najk0kfhp7k" path="res://sfx/item plop normal.mp3" id="6_sc4t8"]
+[ext_resource type="Texture2D" uid="uid://uiof3r6ckybj" path="res://sprites/PARK TILESET.png" id="7_ai45w"]
+[ext_resource type="PackedScene" uid="uid://q8gwspukgni2" path="res://scenes/debug_overlay.tscn" id="10_fyhu2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4papg"]
+texture = ExtResource("7_ai45w")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+19:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+18:3/0 = 0
+19:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_tcf2h"]
+sources/0 = SubResource("TileSetAtlasSource_4papg")
 
 [node name="World" type="Node2D"]
 
@@ -13,11 +99,489 @@
 repeat_size = Vector2(480, 270)
 
 [node name="Grass" type="TextureRect" parent="Parallax Background"]
+modulate = Color(1, 1, 1, 0.772549)
 offset_right = 480.0
 offset_bottom = 270.0
-texture = ExtResource("3_4717r")
+texture = ExtResource("1_sc4t8")
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Trash Manager" parent="." instance=ExtResource("4_h5o24")]
+
+[node name="SFX" type="Node2D" parent="Trash Manager"]
+
+[node name="SFX Item Plop Normal" type="AudioStreamPlayer2D" parent="Trash Manager/SFX"]
+stream = ExtResource("6_sc4t8")
+volume_db = -2.0
+pitch_scale = 0.85
+attenuation = 0.5
+max_polyphony = 50
+
+[node name="SFX Item Plop Medium" type="AudioStreamPlayer2D" parent="Trash Manager/SFX"]
+stream = ExtResource("6_sc4t8")
+volume_db = -5.0
+pitch_scale = 0.5
+attenuation = 0.5
+
+[node name="SFX Item Plop Low" type="AudioStreamPlayer2D" parent="Trash Manager/SFX"]
+stream = ExtResource("6_sc4t8")
+volume_db = -8.0
+pitch_scale = 0.25
+attenuation = 0.5
+max_polyphony = 50
+
+[node name="TRASH" type="Node" parent="Trash Manager"]
+
+[node name="Apples" type="Node" parent="Trash Manager/TRASH"]
+
+[node name="Apple" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+
+[node name="Apple2" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(110, 133)
+
+[node name="Apple3" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(295, 34)
+
+[node name="Apple4" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(19, 173)
+
+[node name="Apple5" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(372, 348)
+
+[node name="Apple6" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(112, 352)
+
+[node name="Apple7" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(621, -213)
+
+[node name="Apple8" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(731, -80)
+
+[node name="Apple9" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(916, -179)
+
+[node name="Apple10" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(640, -40)
+
+[node name="Apple11" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(993, 135)
+
+[node name="Apple12" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(733, 139)
+
+[node name="Apple13" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(96, -273)
+
+[node name="Apple14" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(206, -140)
+
+[node name="Apple15" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(391, -239)
+
+[node name="Apple16" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(115, -100)
+
+[node name="Apple17" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(468, 75)
+
+[node name="Apple18" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(208, 79)
+
+[node name="Apple19" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(-271, 187)
+
+[node name="Apple20" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(-161, 320)
+
+[node name="Apple21" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(24, 221)
+
+[node name="Apple22" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(-252, 360)
+
+[node name="Apple23" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(101, 535)
+
+[node name="Apple24" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(-159, 539)
+
+[node name="Apple25" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(350, -26)
+
+[node name="Apple26" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(460, 107)
+
+[node name="Apple27" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(645, 8)
+
+[node name="Apple28" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(369, 147)
+
+[node name="Apple29" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(722, 322)
+
+[node name="Apple30" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(462, 326)
+
+[node name="Apple31" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(-175, -86)
+
+[node name="Apple32" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(-65, 47)
+
+[node name="Apple33" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(120, -52)
+
+[node name="Apple34" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(-156, 87)
+
+[node name="Apple35" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(197, 262)
+
+[node name="Apple36" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(-63, 266)
+
+[node name="Apple37" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(504, 674)
+
+[node name="Apple38" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(689, 575)
+
+[node name="Apple39" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(413, 714)
+
+[node name="Apple40" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(766, 889)
+
+[node name="Apple41" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(506, 893)
+
+[node name="Apple42" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(1015, 328)
+
+[node name="Apple43" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(1125, 461)
+
+[node name="Apple44" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(1310, 362)
+
+[node name="Apple45" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(1034, 501)
+
+[node name="Apple46" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(1387, 676)
+
+[node name="Apple47" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(1127, 680)
+
+[node name="Apple48" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(490, 268)
+
+[node name="Apple49" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(600, 401)
+
+[node name="Apple50" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(785, 302)
+
+[node name="Apple51" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(509, 441)
+
+[node name="Apple52" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(862, 616)
+
+[node name="Apple53" parent="Trash Manager/TRASH/Apples" instance=ExtResource("6_ai45w")]
+position = Vector2(602, 620)
+
+[node name="Trash bags" type="Node" parent="Trash Manager/TRASH"]
+
+[node name="Trash Bag" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+
+[node name="Trash Bag2" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(126, 25)
+
+[node name="Trash Bag3" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(5, 84)
+
+[node name="Trash Bag4" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(131, 109)
+
+[node name="Trash Bag5" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(196, 446)
+
+[node name="Trash Bag6" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(322, 471)
+
+[node name="Trash Bag7" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(201, 530)
+
+[node name="Trash Bag8" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(327, 555)
+
+[node name="Trash Bag9" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-489, 30)
+
+[node name="Trash Bag10" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-363, 55)
+
+[node name="Trash Bag11" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-484, 114)
+
+[node name="Trash Bag12" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-358, 139)
+
+[node name="Trash Bag13" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-293, 476)
+
+[node name="Trash Bag14" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-167, 501)
+
+[node name="Trash Bag15" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-288, 560)
+
+[node name="Trash Bag16" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-162, 585)
+
+[node name="Trash Bag17" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-702, 379)
+
+[node name="Trash Bag18" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-576, 404)
+
+[node name="Trash Bag19" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-697, 463)
+
+[node name="Trash Bag20" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-571, 488)
+
+[node name="Trash Bag21" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-506, 825)
+
+[node name="Trash Bag22" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-380, 850)
+
+[node name="Trash Bag23" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-501, 909)
+
+[node name="Trash Bag24" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-375, 934)
+
+[node name="Trash Bag25" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1749, -131)
+
+[node name="Trash Bag26" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1875, -106)
+
+[node name="Trash Bag27" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1754, -47)
+
+[node name="Trash Bag28" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1880, -22)
+
+[node name="Trash Bag29" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1945, 315)
+
+[node name="Trash Bag30" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(2071, 340)
+
+[node name="Trash Bag31" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1950, 399)
+
+[node name="Trash Bag32" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(2076, 424)
+
+[node name="Trash Bag33" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1260, -101)
+
+[node name="Trash Bag34" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1386, -76)
+
+[node name="Trash Bag35" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1265, -17)
+
+[node name="Trash Bag36" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1391, 8)
+
+[node name="Trash Bag37" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1456, 345)
+
+[node name="Trash Bag38" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1582, 370)
+
+[node name="Trash Bag39" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1461, 429)
+
+[node name="Trash Bag40" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1587, 454)
+
+[node name="Trash Bag41" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1047, 248)
+
+[node name="Trash Bag42" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1173, 273)
+
+[node name="Trash Bag43" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1052, 332)
+
+[node name="Trash Bag44" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1178, 357)
+
+[node name="Trash Bag45" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1243, 694)
+
+[node name="Trash Bag46" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1369, 719)
+
+[node name="Trash Bag47" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1248, 778)
+
+[node name="Trash Bag48" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(1374, 803)
+
+[node name="Cardboard boxes" type="Node" parent="Trash Manager/TRASH"]
+
+[node name="Cardboard Box" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(155, 46)
+
+[node name="Cardboard Box2" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(187, 14)
+
+[node name="Cardboard Box3" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(9, 92)
+
+[node name="Cardboard Box4" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(195, 107)
+
+[node name="Cardboard Box5" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(195, 191)
+
+[node name="Cardboard Box6" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(227, 159)
+
+[node name="Cardboard Box7" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(49, 237)
+
+[node name="Cardboard Box8" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(235, 252)
+
+[node name="Cardboard Box9" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(420, 53)
+
+[node name="Cardboard Box10" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(452, 21)
+
+[node name="Cardboard Box11" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(274, 99)
+
+[node name="Cardboard Box12" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(460, 114)
+
+[node name="Cardboard Box13" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(460, 198)
+
+[node name="Cardboard Box14" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(492, 166)
+
+[node name="Cardboard Box15" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(314, 244)
+
+[node name="Cardboard Box16" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(500, 259)
+
+[node name="Cardboard Box17" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(517, 217)
+
+[node name="Cardboard Box18" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(549, 185)
+
+[node name="Cardboard Box19" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(371, 263)
+
+[node name="Cardboard Box20" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(557, 278)
+
+[node name="Cardboard Box21" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(557, 362)
+
+[node name="Cardboard Box22" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(589, 330)
+
+[node name="Cardboard Box23" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(411, 408)
+
+[node name="Cardboard Box24" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(597, 423)
+
+[node name="Cardboard Box25" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(782, 224)
+
+[node name="Cardboard Box26" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(814, 192)
+
+[node name="Cardboard Box27" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(636, 270)
+
+[node name="Cardboard Box28" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(822, 285)
+
+[node name="Cardboard Box29" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(822, 369)
+
+[node name="Cardboard Box30" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(854, 337)
+
+[node name="Cardboard Box31" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(676, 415)
+
+[node name="Cardboard Box32" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(862, 430)
+
+[node name="Cardboard Box33" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(557, 36)
+
+[node name="Cardboard Box34" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(589, 4)
+
+[node name="Cardboard Box35" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(411, 82)
+
+[node name="Cardboard Box36" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(597, 97)
+
+[node name="Cardboard Box37" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(597, 181)
+
+[node name="Cardboard Box38" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(629, 149)
+
+[node name="Cardboard Box39" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(451, 227)
+
+[node name="Cardboard Box40" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(637, 242)
+
+[node name="Cardboard Box41" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(822, 43)
+
+[node name="Cardboard Box42" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(854, 11)
+
+[node name="Cardboard Box43" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(676, 89)
+
+[node name="Cardboard Box44" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(862, 104)
+
+[node name="Cardboard Box45" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(862, 188)
+
+[node name="Cardboard Box46" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(894, 156)
+
+[node name="Cardboard Box47" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(716, 234)
+
+[node name="Cardboard Box48" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(902, 249)
 
 [node name="PLAYER" type="Node2D" parent="."]
 position = Vector2(68, 35)
@@ -25,152 +589,12 @@ position = Vector2(68, 35)
 [node name="Player" parent="PLAYER" groups=["player"] instance=ExtResource("2_h5o24")]
 position = Vector2(22, 16)
 
-[node name="Trash Manager" parent="." instance=ExtResource("4_h5o24")]
+[node name="SkateboardRig" parent="PLAYER/Player" instance=ExtResource("3_mmdvd")]
+position = Vector2(0, 6)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
+scale = Vector2(1.01298, 1)
 tile_set = SubResource("TileSet_tcf2h")
 
-[node name="Cardboard Box" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(155, 46)
-
-[node name="Cardboard Box2" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(187, 14)
-
-[node name="Cardboard Box3" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(9, 92)
-
-[node name="Cardboard Box4" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(195, 107)
-
-[node name="Cardboard Box5" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(195, 191)
-
-[node name="Cardboard Box6" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(227, 159)
-
-[node name="Cardboard Box7" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(49, 237)
-
-[node name="Cardboard Box8" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(235, 252)
-
-[node name="Cardboard Box9" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(420, 53)
-
-[node name="Cardboard Box10" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(452, 21)
-
-[node name="Cardboard Box11" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(274, 99)
-
-[node name="Cardboard Box12" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(460, 114)
-
-[node name="Cardboard Box13" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(460, 198)
-
-[node name="Cardboard Box14" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(492, 166)
-
-[node name="Cardboard Box15" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(314, 244)
-
-[node name="Cardboard Box16" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(500, 259)
-
-[node name="Cardboard Box17" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(517, 217)
-
-[node name="Cardboard Box18" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(549, 185)
-
-[node name="Cardboard Box19" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(371, 263)
-
-[node name="Cardboard Box20" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(557, 278)
-
-[node name="Cardboard Box21" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(557, 362)
-
-[node name="Cardboard Box22" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(589, 330)
-
-[node name="Cardboard Box23" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(411, 408)
-
-[node name="Cardboard Box24" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(597, 423)
-
-[node name="Cardboard Box25" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(782, 224)
-
-[node name="Cardboard Box26" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(814, 192)
-
-[node name="Cardboard Box27" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(636, 270)
-
-[node name="Cardboard Box28" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(822, 285)
-
-[node name="Cardboard Box29" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(822, 369)
-
-[node name="Cardboard Box30" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(854, 337)
-
-[node name="Cardboard Box31" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(676, 415)
-
-[node name="Cardboard Box32" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(862, 430)
-
-[node name="Cardboard Box33" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(557, 36)
-
-[node name="Cardboard Box34" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(589, 4)
-
-[node name="Cardboard Box35" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(411, 82)
-
-[node name="Cardboard Box36" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(597, 97)
-
-[node name="Cardboard Box37" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(597, 181)
-
-[node name="Cardboard Box38" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(629, 149)
-
-[node name="Cardboard Box39" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(451, 227)
-
-[node name="Cardboard Box40" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(637, 242)
-
-[node name="Cardboard Box41" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(822, 43)
-
-[node name="Cardboard Box42" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(854, 11)
-
-[node name="Cardboard Box43" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(676, 89)
-
-[node name="Cardboard Box44" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(862, 104)
-
-[node name="Cardboard Box45" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(862, 188)
-
-[node name="Cardboard Box46" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(894, 156)
-
-[node name="Cardboard Box47" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(716, 234)
-
-[node name="Cardboard Box48" parent="." instance=ExtResource("6_fn3g3")]
-position = Vector2(902, 249)
+[node name="DebugOverlay" parent="." instance=ExtResource("10_fyhu2")]
