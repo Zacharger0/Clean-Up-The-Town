@@ -73,8 +73,7 @@ func _process(delta: float) -> void:
 	var output := ""
 
 # ========= HEADER =========
-	output += "[center][b][color=gray]DEBUG MENU[/color][/b][/center]\n\n"
-
+	output += "[center][color=green][b]=== DEV MENU ===[/b][/color][/center]\n\n"
 	# ========= SECTION 1: LIVE STATE =========
 	if tracked_object:
 		var pos = _read_vec2(tracked_object, "global_position")

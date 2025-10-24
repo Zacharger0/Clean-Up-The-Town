@@ -2,11 +2,19 @@ extends CharacterBody2D
 
 @onready var player_sprite: Sprite2D = $Sprite2D
 
+@onready var sfx_skateboard: AudioStreamPlayer2D = $SFX_Skateboard
+
+var skate_min_pitch := 0.9
+var skate_max_pitch := 1.4
+var skate_fade_speed := -15.0
+var skate_volume := -15.0  # dB (adjust for your mix)
+var skate_min_volume := -25.0
+
 var base_speed := 150.0
 var max_speed := 320.0
 var acceleration := 800.0
 var deceleration := 900.0
-var drift_factor := 10.0  # higher = tighter control, lower = more slide
+var drift_factor := 3.5  # higher = tighter control, lower = more slide
 
 var current_speed := 0.0
 var time := 0.0
@@ -61,6 +69,8 @@ func get_input(delta):
 func _physics_process(delta: float) -> void:
 	get_input(delta)
 	move_and_slide()
+	_update_skate_sfx(delta)
+	
 
 
 func wobble_and_lean(delta):
@@ -77,3 +87,40 @@ func wobble_and_lean(delta):
 
 	rotation = wobble + lean_amount
 	time += delta
+
+func _update_skate_sfx(delta: float) -> void:
+	var moving_speed = velocity.length()
+	var min_speed_to_play = 5.0
+
+	# --- Player is moving ---
+	if moving_speed > min_speed_to_play:
+		# start sound if not already playing
+		if not sfx_skateboard.playing:
+			sfx_skateboard.volume_db = skate_min_volume  # start quiet
+			sfx_skateboard.play()
+
+		# smooth fade-in for short movements
+		sfx_skateboard.volume_db = lerp(
+			sfx_skateboard.volume_db,
+			skate_volume,
+			delta * 2.5  # increase for faster fade-in
+		)
+
+		# adjust pitch by speed
+		var speed_ratio = clamp(current_speed / max_speed, 0.0, 1.0)
+		sfx_skateboard.pitch_scale = lerp(
+			sfx_skateboard.pitch_scale,
+			lerp(skate_min_pitch, skate_max_pitch, speed_ratio),
+			delta * 4
+		)
+
+	# --- Player is slowing/stopped ---
+	else:
+		# fast fade-out then stop
+		sfx_skateboard.volume_db = lerp(
+			sfx_skateboard.volume_db,
+			skate_min_volume,
+			delta * 10.0  # higher = quicker cutoff
+		)
+		if sfx_skateboard.volume_db <= skate_min_volume + 1.0:
+			sfx_skateboard.stop()
