@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjoxvbfhshxge"]
+[gd_scene load_steps=6 format=3 uid="uid://bjoxvbfhshxge"]
 
 [ext_resource type="Script" uid="uid://c2rs0dyqoh8xd" path="res://recycle_bin.gd" id="1_mgr5a"]
 [ext_resource type="Texture2D" uid="uid://c0tpq2qfv1b4q" path="res://sprites/trashcan.png" id="2_q7cin"]
 [ext_resource type="AudioStream" uid="uid://daktnj5nxewtf" path="res://sfx/whoosh.mp3" id="3_q7cin"]
+[ext_resource type="AudioStream" uid="uid://dcbgij3iwg65g" path="res://sfx/Cash Register (Kaching) - Sound Effect (HD).mp3" id="4_576ct"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_576ct"]
 
@@ -32,3 +33,7 @@ text = "Hold E to Recycle"
 [node name="RecycleSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_q7cin")
 volume_db = -10.0
+
+[node name="MoneySFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_576ct")
+volume_db = -20.0

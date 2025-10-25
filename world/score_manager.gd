@@ -4,84 +4,75 @@ extends Node
 @onready var game_timer: Timer = $GameTimer
 @onready var game_over_label: Label = $GameOverLabel
 
-# --- Core Stats ---
-var total_trash_collected: int = 0      # total number of trash items picked up
-var total_trash_value: int = 0          # hidden value used for recycling
-var total_score: int = 0                # lifetime score (updates on pickup)
-var money: int = 0
-var game_time: float = 30.0             # seconds
-var ms_time_accum: float = 0.0          # internal accumulator for milliseconds
-
-# --- Signals ---
 signal score_updated(new_score: int)
 signal trash_collected(new_total: int)
 signal money_updated(new_money: int)
+signal money_tick
 signal timer_ended
 
-# ---------------------- SETUP ----------------------
+var total_trash_collected: int = 0
+var total_trash_value: int = 0
+var total_score: int = 0
+var money: int = 0
+var game_time: float = 30.0
 
 func _ready() -> void:
 	add_to_group("score_manager")
-	game_timer.wait_time = 0.01  # tick every 10ms for ms precision
+	game_timer.wait_time = 1.0
 	game_timer.autostart = true
 	game_timer.connect("timeout", Callable(self, "_on_game_timer_timeout"))
 	game_over_label.visible = false
 	_update_score_label()
 
-# ---------------------- ADD TRASH ----------------------
-
 func add_trash(value: int) -> void:
-	# Each trash gives immediate score but also adds hidden value for recycling
 	total_trash_collected += 1
-	total_trash_value += value     # used for money conversion later
-	total_score += value           # lifetime visible score
+	total_trash_value += value
+	total_score += value
 	trash_collected.emit(total_trash_collected)
 	score_updated.emit(total_score)
 	_update_score_label()
-
-# ---------------------- RECYCLE LOGIC ----------------------
 
 func recycle_trash() -> void:
 	if total_trash_value <= 0:
 		return
 
-	# Convert hidden trash value into money
-	var earned_money := int(total_trash_value / 10)
-	money += earned_money
-	total_trash_value = 0  # reset after recycling
+	var earned_money: int = int(total_trash_value / 10)
+	var added_money := 0
+	var trash_remaining := total_trash_value
 
-	money_updated.emit(money)
+	while trash_remaining > 0:
+		await get_tree().create_timer(0.05).timeout
+		var decrease: int = min(2, trash_remaining)
+		trash_remaining -= decrease
+		total_trash_value = trash_remaining
+		total_trash_collected = trash_remaining
+
+		if added_money < earned_money:
+			money += 1
+			added_money += 1
+			money_tick.emit()  # 👈 tell recycle bin to do visual + sfx
+
+		_update_score_label()
+
+	total_trash_value = 0
+	total_trash_collected = 0
 	_update_score_label()
-
-# ---------------------- TIMER (with milliseconds) ----------------------
+	money_updated.emit(money)
 
 func _on_game_timer_timeout() -> void:
-	game_time -= 0.01
+	game_time -= 1
 	if game_time <= 0:
-		game_time = 0
 		game_timer.stop()
 		timer_ended.emit()
 		_show_game_over()
 	_update_score_label()
 
-# ---------------------- UPDATE LABEL ----------------------
-
 func _update_score_label() -> void:
-	var total_ms := int((game_time - int(game_time)) * 1000)
 	var minutes := int(game_time) / 60
 	var seconds := int(game_time) % 60
-
-	score_label.text = "SCORE: %d | TRASH: %d\n
-						MONEY: $%d | TIME: %02d:%02d:%03d" % [
-		total_score,
-		total_trash_collected,
-		money,
-		minutes,
-		seconds,
-		total_ms
+	score_label.text = "SCORE: %d | TRASH: %d | MONEY: $%d | TIME: %02d:%02d" % [
+		total_score, total_trash_collected, money, minutes, seconds
 	]
-
-# ---------------------- GAME OVER ----------------------
 
 func _show_game_over() -> void:
 	game_over_label.text = "GAME OVER\nScore: %d" % total_score
