@@ -1,6 +1,8 @@
 extends Area2D
 
-signal trash_collected
+signal trash_collected(value: int)
+
+@onready var score_manager: Node = $"../../../../ScoreManager"
 
 @onready var sfx_item_plop_low: AudioStreamPlayer2D = $"../../../SFX/SFX Item Plop Low"
 
@@ -43,4 +45,5 @@ func _on_body_entered(body: Node) -> void:
 	if body is CharacterBody2D:
 		trash_collected.emit()
 		sfx_item_plop_low.play()
+		score_manager.add_trash(3)
 		queue_free()

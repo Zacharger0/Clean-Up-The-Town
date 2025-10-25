@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnnngjnnpdd5j"]
+[gd_scene load_steps=17 format=3 uid="uid://bnnngjnnpdd5j"]
 
 [ext_resource type="Texture2D" uid="uid://bps5gmolkbsah" path="res://sprites/grass_background_1021.png" id="1_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://b0fjlhu8nq4gp" path="res://player/player.tscn" id="2_h5o24"]
@@ -10,6 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://c8najk0kfhp7k" path="res://sfx/item plop normal.mp3" id="6_sc4t8"]
 [ext_resource type="Texture2D" uid="uid://uiof3r6ckybj" path="res://sprites/PARK TILESET.png" id="7_ai45w"]
 [ext_resource type="PackedScene" uid="uid://q8gwspukgni2" path="res://scenes/debug_overlay.tscn" id="10_fyhu2"]
+[ext_resource type="Script" uid="uid://cbfavaqycj5fj" path="res://world/score_manager.gd" id="11_ov2xu"]
+[ext_resource type="FontFile" uid="uid://b3awj0mmqutk1" path="res://VCR_OSD_MONO_1.001.ttf" id="12_mad0u"]
+[ext_resource type="PackedScene" uid="uid://bjoxvbfhshxge" path="res://scenes/recycle_bin.tscn" id="13_ocfjn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4papg"]
 texture = ExtResource("7_ai45w")
@@ -92,6 +95,8 @@ texture = ExtResource("7_ai45w")
 
 [sub_resource type="TileSet" id="TileSet_tcf2h"]
 sources/0 = SubResource("TileSetAtlasSource_4papg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ov2xu"]
 
 [node name="World" type="Node2D"]
 
@@ -598,3 +603,30 @@ scale = Vector2(1.01298, 1)
 tile_set = SubResource("TileSet_tcf2h")
 
 [node name="DebugOverlay" parent="." instance=ExtResource("10_fyhu2")]
+
+[node name="ScoreManager" type="CanvasLayer" parent="." groups=["score_manager"]]
+script = ExtResource("11_ov2xu")
+
+[node name="ScoreLabel" type="Label" parent="ScoreManager"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("12_mad0u")
+theme_override_font_sizes/font_size = 20
+
+[node name="GameTimer" type="Timer" parent="ScoreManager"]
+autostart = true
+
+[node name="GameOverLabel" type="Label" parent="ScoreManager"]
+offset_left = 91.0
+offset_top = 50.0
+offset_right = 131.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0.901771, 5.99228e-06, 8.66354e-07, 1)
+theme_override_fonts/font = ExtResource("12_mad0u")
+theme_override_font_sizes/font_size = 30
+label_settings = SubResource("LabelSettings_ov2xu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecycleBin" parent="." instance=ExtResource("13_ocfjn")]
+position = Vector2(52, 137)
