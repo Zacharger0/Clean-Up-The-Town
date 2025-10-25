@@ -3,7 +3,6 @@ extends Area2D
 signal trash_collected(value: int)
 
 @onready var score_manager: Node = $"../../../../ScoreManager"
-
 @onready var sfx_item_plop_low: AudioStreamPlayer2D = $"../../../SFX/SFX Item Plop Low"
 
 var move_speed = 500.0  # SPEED THAT TRASH MOVES TO PLAYER
@@ -12,6 +11,7 @@ var player: CharacterBody2D
 var coyote_time = 2.0  # HOW LONG MAGNET LASTS AFTER RELEASE
 var coyote_timer = 0.0  # TRACKS COYOTE TIME LEFT
 var is_magnet_active = false  # CONTROLS MAGNET STATE
+var trash_value = 3  # VALUE OF THIS TRASH
 
 func _ready() -> void:
 	# CONNECTS body_entered SIGNAL
@@ -43,7 +43,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body is CharacterBody2D:
-		trash_collected.emit()
 		sfx_item_plop_low.play()
-		score_manager.add_trash(3)
+		print("Collected trash worth: ", trash_value)
+		score_manager.add_trash(trash_value)
+		trash_collected.emit(trash_value)
 		queue_free()
