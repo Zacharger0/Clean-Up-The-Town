@@ -35,7 +35,9 @@ stream = ExtResource("3_g1dw6")
 
 [node name="VacuumArea" parent="." instance=ExtResource("4_yw30f")]
 position = Vector2(21, 0)
+range = 300.0
 
 [node name="VacuumDeniedSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_qjkh3")
+volume_db = -10.0
 pitch_scale = 0.25

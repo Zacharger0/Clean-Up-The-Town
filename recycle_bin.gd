@@ -12,18 +12,21 @@ var required_hold_time := 3.0
 var recycling := false
 
 func _ready() -> void:
-	progress_bar.custom_minimum_size = Vector2(200, 20)
+	progress_bar.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	progress_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	progress_bar.set_anchors_preset(Control.PRESET_CENTER)
+	progress_bar.size = Vector2(100, 1)  # actual on-screen size
 
 	var border := StyleBoxFlat.new()
 	border.bg_color = Color.BLACK
-	border.set_border_width_all(3)
+	border.set_border_width_all(1)
 	border.border_color = Color.BLACK
-	border.set_corner_radius_all(3)
+	border.set_corner_radius_all(1)
 	progress_bar.add_theme_stylebox_override("background", border)
 
 	var fill := StyleBoxFlat.new()
 	fill.bg_color = Color(0, 1, 0)
-	fill.set_corner_radius_all(3)
+	fill.set_corner_radius_all(1)
 	progress_bar.add_theme_stylebox_override("fill", fill)
 
 	progress_bar.visible = false
