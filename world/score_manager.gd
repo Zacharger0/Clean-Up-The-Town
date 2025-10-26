@@ -54,21 +54,24 @@ func recycle_trash() -> Dictionary:
 
 	var earned_money := int(base_money * bonus_multiplier)
 	money += earned_money
+	money_updated.emit(money)
 
-	# --- Smooth trash drain (visual feedback) ---
+	# Store start value for smooth visual drain
 	var start_value := total_trash_value
 	var duration := 1.0
 	var step_time := 0.05
 	var steps := int(duration / step_time)
 
+	# Run the drain asynchronously (trash visually goes down)
 	for i in range(steps):
 		await get_tree().create_timer(step_time).timeout
 		var t := float(i) / float(steps)
 		total_trash_value = int(lerp(start_value, 0, t))
 		_update_score_label()
 
+	# ✅ Make sure it hits exactly zero
 	total_trash_value = 0
-	money_updated.emit(money)
+	total_trash_collected = 0
 	_update_score_label()
 
 	return {"earned_money": earned_money, "bonus_multiplier": bonus_multiplier}

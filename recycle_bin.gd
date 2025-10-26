@@ -93,18 +93,11 @@ func _start_recycle_animation() -> void:
 	_shake_bin()
 	_spawn_recycle_trash(total_value)
 
-	var base_money := int(total_value / 10)
-	var predicted_bonus := 1.0
-	if total_value >= 200:
-		predicted_bonus = 1.5
-	elif total_value >= 100:
-		predicted_bonus = 1.25
-	elif total_value >= 50:
-		predicted_bonus = 1.15
-	elif total_value >= 25:
-		predicted_bonus = 1.10
+	var recycle_result: Dictionary = await score_manager.recycle_trash()
 
-	var predicted_money := int(base_money * predicted_bonus)
+	var predicted_money: int = recycle_result.get("earned_money", 0)
+	var predicted_bonus: float = recycle_result.get("bonus_multiplier", 1.0)
+
 	_show_money_popup(predicted_money)
 	if predicted_bonus > 1.0:
 		_show_bonus_popup(predicted_bonus)
@@ -113,13 +106,10 @@ func _start_recycle_animation() -> void:
 		money_sfx.pitch_scale = randf_range(0.9, 1.1)
 		money_sfx.play()
 
-	score_manager.recycle_trash()  # async drains trash smoothly
-
 	recycling = false
 	hold_time = 0.0
 	prompt_label.text = "Hold [E] to recycle"
 	prompt_label.visible = true
-
 # ---------------- SHAKE EFFECT ----------------
 func _shake_bin() -> void:
 	var tween := create_tween()
