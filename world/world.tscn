@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnnngjnnpdd5j"]
+[gd_scene load_steps=19 format=3 uid="uid://bnnngjnnpdd5j"]
 
 [ext_resource type="Texture2D" uid="uid://bps5gmolkbsah" path="res://sprites/grass_background_1021.png" id="1_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://b0fjlhu8nq4gp" path="res://player/player.tscn" id="2_h5o24"]
 [ext_resource type="PackedScene" uid="uid://jyudah3uhqon" path="res://player/SkateboardRig.tscn" id="3_mmdvd"]
+[ext_resource type="AudioStream" uid="uid://dk5akby7ss8fp" path="res://sfx/item plop.mp3" id="4_dqqhb"]
 [ext_resource type="PackedScene" uid="uid://c14tpf1anhgjx" path="res://trash/trash_manager.tscn" id="4_h5o24"]
 [ext_resource type="PackedScene" uid="uid://bxamj7rjok3uo" path="res://trash/trash_bag.tscn" id="5_4papg"]
 [ext_resource type="PackedScene" uid="uid://dql8xwguayv7t" path="res://trash/apple.tscn" id="6_ai45w"]
@@ -142,6 +143,10 @@ volume_db = -8.0
 pitch_scale = 0.25
 attenuation = 0.5
 max_polyphony = 50
+
+[node name="SFX Item Plop" type="AudioStreamPlayer2D" parent="Trash Manager/SFX"]
+stream = ExtResource("4_dqqhb")
+volume_db = -10.0
 
 [node name="TRASH" type="Node" parent="Trash Manager"]
 

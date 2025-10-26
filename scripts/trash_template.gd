@@ -60,7 +60,7 @@ func _fly_into_vacuum(vacuum: Area2D) -> void:
 # --------------------------------------------
 func _collect_trash() -> void:
 	if sfx_item_plop_normal:
-		sfx_item_plop_normal.pitch_scale = randf_range(0.9, 1.1)
+		sfx_item_plop_normal.pitch_scale = randf_range(0.7, 1.2)
 		sfx_item_plop_normal.play()
 
 	if score_manager:
