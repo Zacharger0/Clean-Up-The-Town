@@ -15,7 +15,7 @@ var total_trash_collected: int = 0   # Number of trash items picked up
 var total_trash_value: int = 0       # Hidden value for recycling (not shown)
 var total_score: int = 0             # Lifetime visible score
 var money: int = 0
-var game_time: float = 30.0
+var game_time: float = 60.0
 
 func _ready() -> void:
 	add_to_group("score_manager")
