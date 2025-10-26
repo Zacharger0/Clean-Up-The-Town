@@ -2,19 +2,19 @@ extends Area2D
 
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var prompt_label: Label = $Label
-@onready var score_manager = get_tree().get_first_node_in_group("score_manager")
+@onready var score_manager: Node = get_tree().get_first_node_in_group("score_manager")
 @onready var recycle_sfx: AudioStreamPlayer2D = $RecycleSFX
-@onready var money_sfx: AudioStreamPlayer2D = $MoneySFX  # <- NEW
+@onready var money_sfx: AudioStreamPlayer2D = $MoneySFX
 
 var player_near := false
 var hold_time := 0.0
 var required_hold_time := 3.0
 var recycling := false
 
+# ---------------- READY ----------------
 func _ready() -> void:
 	progress_bar.custom_minimum_size = Vector2(200, 20)
 
-	# --- Black background frame ---
 	var border := StyleBoxFlat.new()
 	border.bg_color = Color.BLACK
 	border.set_border_width_all(3)
@@ -22,7 +22,6 @@ func _ready() -> void:
 	border.set_corner_radius_all(3)
 	progress_bar.add_theme_stylebox_override("background", border)
 
-	# --- Green fill style ---
 	var fill := StyleBoxFlat.new()
 	fill.bg_color = Color(0, 1, 0)
 	fill.set_corner_radius_all(3)
@@ -34,10 +33,7 @@ func _ready() -> void:
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	connect("body_exited", Callable(self, "_on_body_exited"))
 
-	# --- Link with ScoreManager for money tick events ---
-	score_manager = get_tree().get_first_node_in_group("score_manager")
-	if score_manager:
-		score_manager.connect("money_tick", Callable(self, "_on_money_tick"))
+# ---------------- PROCESS ----------------
 func _process(delta: float) -> void:
 	if not score_manager:
 		score_manager = get_tree().get_first_node_in_group("score_manager")
@@ -49,7 +45,6 @@ func _process(delta: float) -> void:
 				progress_bar.visible = true
 				progress_bar.value = clamp(hold_time / required_hold_time, 0.0, 1.0)
 				progress_bar.modulate = Color(0.0, progress_bar.value, 0.0)
-
 				if hold_time >= required_hold_time:
 					recycling = true
 					_start_recycle_animation()
@@ -62,6 +57,7 @@ func _process(delta: float) -> void:
 	else:
 		hold_time = 0.0
 
+# ---------------- PLAYER DETECTION ----------------
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		player_near = true
@@ -75,65 +71,56 @@ func _on_body_exited(body: Node) -> void:
 		progress_bar.visible = false
 		hold_time = 0.0
 
+# ---------------- RECYCLE ANIMATION ----------------
 func _start_recycle_animation() -> void:
 	prompt_label.visible = false
 	progress_bar.visible = false
-
 	if not score_manager:
 		return
 
-	var total_trash_value: int = score_manager.total_trash_value
-	if total_trash_value <= 0:
+	var total_value: int = score_manager.total_trash_value
+	if total_value <= 0:
 		recycling = false
 		prompt_label.text = "No trash to recycle!"
 		prompt_label.visible = true
 		return
 
+	# --- Play recycle SFX + shake ---
 	if recycle_sfx:
 		recycle_sfx.pitch_scale = randf_range(0.75, 1.25)
 		recycle_sfx.play()
 	_shake_bin()
-	_spawn_recycle_trash(total_trash_value)
+	_spawn_recycle_trash(total_value)
 
-	# Only trigger logic once
-	score_manager.recycle_trash()
-	recycling = false
-	hold_time = 0.0
-	prompt_label.text = "Hold [E] to recycle"
-	prompt_label.visible = true
-	
-# --- POPUP AND SOUND ---
+	# --- Predict reward for immediate feedback ---
+	var base_money := int(total_value / 10)
+	var predicted_bonus := 1.0
+	if total_value >= 200:
+		predicted_bonus = 1.5
+	elif total_value >= 100:
+		predicted_bonus = 1.25
+	elif total_value >= 50:
+		predicted_bonus = 1.15
+	elif total_value >= 25:
+		predicted_bonus = 1.10
 
-func _show_money_popup(amount: int) -> void:
-	if amount <= 0:
-		return
+	var predicted_money := int(base_money * predicted_bonus)
+	_show_money_popup(predicted_money)
+	if predicted_bonus > 1.0:
+		_show_bonus_popup(predicted_bonus)
 
-	var popup := Label.new()
-	popup.text = "+$%d" % amount
-	popup.modulate = Color(0.2, 1.0, 0.2, 1.0)  # brighter green
-	popup.scale = Vector2(1.0, 1.0)
-	popup.set("theme_override_font_sizes/font_size", 28)
-	popup.set("theme_override_colors/font_color", Color(0.2, 1.0, 0.2))
-	popup.set("theme_override_font_weights/bold", 800)
-	popup.global_position = global_position + Vector2(-20, -150)  # higher above bin
-	add_child(popup)
-
-	# Play money sound effect
 	if money_sfx:
 		money_sfx.pitch_scale = randf_range(0.9, 1.1)
 		money_sfx.play()
 
-	# Tween: pop-in scale, then float upward and fade
-	var tween := create_tween()
-	popup.scale = Vector2(0.5, 0.5)
-	tween.tween_property(popup, "scale", Vector2(1.2, 1.2), 0.15).set_trans(Tween.TRANS_BACK)
-	tween.tween_property(popup, "scale", Vector2(1.0, 1.0), 0.1)
-	tween.tween_property(popup, "position:y", popup.position.y - 60, 0.9).set_trans(Tween.TRANS_SINE)
-	tween.parallel().tween_property(popup, "modulate:a", 0.0, 0.9)
-	tween.tween_callback(popup.queue_free)
-	
-# --- SHAKE ANIMATION ---
+	score_manager.recycle_trash()  # async drains trash smoothly
 
+	recycling = false
+	hold_time = 0.0
+	prompt_label.text = "Hold [E] to recycle"
+	prompt_label.visible = true
+
+# ---------------- SHAKE EFFECT ----------------
 func _shake_bin() -> void:
 	var tween := create_tween()
 	var original_pos := position
@@ -141,15 +128,14 @@ func _shake_bin() -> void:
 	tween.tween_property(self, "position", original_pos - Vector2(5, 0), 0.05)
 	tween.tween_property(self, "position", original_pos, 0.05)
 
-# --- VISUAL TRASH BURST ---
-
+# ---------------- TRASH BURST ----------------
 func _spawn_recycle_trash(total_value: int) -> void:
 	var player := get_tree().get_first_node_in_group("player") as Node2D
 	if player == null:
 		return
 
 	var num_trash: int = clamp(int(total_value / 10), 5, 50)
-	var trash_textures: Array[Texture2D] = [
+	var trash_textures := [
 		preload("res://sprites/apple.png"),
 		preload("res://sprites/trashbag.png"),
 		preload("res://sprites/cardboard.png")
@@ -167,3 +153,47 @@ func _spawn_recycle_trash(total_value: int) -> void:
 		tween.tween_property(trash_sprite, "global_position", mid_pos, 0.25).set_trans(Tween.TRANS_SINE)
 		tween.tween_property(trash_sprite, "global_position", global_position, 0.35).set_trans(Tween.TRANS_SINE)
 		tween.tween_callback(trash_sprite.queue_free)
+
+# ---------------- MONEY POPUP ----------------
+func _show_money_popup(amount: int) -> void:
+	if amount <= 0:
+		return
+
+	var popup := Label.new()
+	popup.text = "+$%d" % amount
+	popup.modulate = Color(0.2, 1.0, 0.2, 1.0)
+	popup.set("theme_override_font_sizes/font_size", 18)
+	popup.set("theme_override_font_weights/bold", 800)
+	popup.global_position = global_position + Vector2(-20, -160)
+	add_child(popup)
+
+	var tween := create_tween()
+	popup.scale = Vector2(0.5, 0.5)
+	tween.tween_property(popup, "scale", Vector2(1.2, 1.2), 0.15).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(popup, "scale", Vector2(1.0, 1.0), 0.1)
+	tween.tween_interval(0.5)
+	tween.tween_property(popup, "position:y", popup.position.y - 80, 1.2).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property(popup, "modulate:a", 0.0, 1.2)
+	tween.tween_callback(popup.queue_free)
+
+# ---------------- BONUS POPUP ----------------
+func _show_bonus_popup(multiplier: float) -> void:
+	if multiplier <= 1.0 or multiplier < 1.25:
+		return
+
+	var popup := Label.new()
+	popup.text = "%.2fx BONUS!" % multiplier
+	popup.modulate = Color(1.0, 0.9, 0.2, 1.0)
+	popup.set("theme_override_font_sizes/font_size", 18)
+	popup.set("theme_override_font_weights/bold", 900)
+	popup.global_position = global_position + Vector2(-70, -190)
+	add_child(popup)
+
+	var tween := create_tween()
+	popup.scale = Vector2(0.5, 0.5)
+	tween.tween_property(popup, "scale", Vector2(1.3, 1.3), 0.2).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(popup, "scale", Vector2(1.0, 1.0), 0.1)
+	tween.tween_interval(0.5)
+	tween.tween_property(popup, "position:y", popup.position.y - 90, 1.3).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property(popup, "modulate:a", 0.0, 1.3)
+	tween.tween_callback(popup.queue_free)

@@ -307,6 +307,384 @@ position = Vector2(126, 25)
 [node name="Trash Bag3" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
 position = Vector2(5, 84)
 
+[node name="Trash Bag49" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(26, 86)
+
+[node name="Trash Bag60" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(19, 113)
+
+[node name="Trash Bag61" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(29, 113)
+
+[node name="Trash Bag62" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(38, 113)
+
+[node name="Trash Bag63" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(12, 113)
+
+[node name="Trash Bag64" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(47, 104)
+
+[node name="Trash Bag65" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(47, 115)
+
+[node name="Trash Bag66" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(47, 93)
+
+[node name="Trash Bag67" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(47, 79)
+
+[node name="Trash Bag68" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(47, 79)
+
+[node name="Trash Bag50" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(26, 74)
+
+[node name="Trash Bag51" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(41, 67)
+
+[node name="Trash Bag69" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(37, 76)
+
+[node name="Trash Bag70" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(29, 63)
+
+[node name="Trash Bag71" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(19, 63)
+
+[node name="Trash Bag72" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 63)
+
+[node name="Trash Bag73" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-2, 74)
+
+[node name="Trash Bag74" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-2, 89)
+
+[node name="Trash Bag75" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-2, 104)
+
+[node name="Trash Bag76" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-2, 104)
+
+[node name="Trash Bag52" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag77" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag78" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag79" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag80" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag81" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag82" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag83" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag84" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag85" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag86" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag87" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag88" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag89" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag90" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag91" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag92" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag93" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag94" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag95" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag96" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag97" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag98" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag99" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag100" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag101" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag102" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag103" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag104" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag105" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag106" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag107" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag108" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag109" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag110" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag111" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag112" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag113" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag114" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag115" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag116" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag117" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag118" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag119" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag120" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag121" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag122" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag123" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag124" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag125" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(-2, 104)
+
+[node name="Trash Bag126" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag127" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag128" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag129" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag130" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag131" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag132" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag133" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag134" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag135" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag136" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag137" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag138" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag139" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag140" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag141" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag142" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag143" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag144" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag145" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag146" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag147" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag148" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag149" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag150" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag151" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag152" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag153" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag154" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag155" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag156" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag157" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag158" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag159" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag160" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag161" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag162" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag163" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag164" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag165" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag166" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag167" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag168" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag169" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag170" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag171" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag172" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag173" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag174" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(10, 75)
+
+[node name="Trash Bag53" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(15, 87)
+
+[node name="Trash Bag54" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(35, 87)
+
+[node name="Trash Bag55" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(35, 100)
+
+[node name="Trash Bag56" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(25, 100)
+
+[node name="Trash Bag57" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(13, 100)
+
+[node name="Trash Bag58" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(5, 100)
+
+[node name="Trash Bag59" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
+position = Vector2(5, 100)
+
 [node name="Trash Bag4" parent="Trash Manager/TRASH/Trash bags" instance=ExtResource("5_4papg")]
 position = Vector2(131, 109)
 
@@ -451,7 +829,10 @@ position = Vector2(155, 46)
 position = Vector2(187, 14)
 
 [node name="Cardboard Box3" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
-position = Vector2(9, 92)
+position = Vector2(9, 105)
+
+[node name="Cardboard Box49" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
+position = Vector2(9, 105)
 
 [node name="Cardboard Box4" parent="Trash Manager/TRASH/Cardboard boxes" instance=ExtResource("6_fn3g3")]
 position = Vector2(195, 107)

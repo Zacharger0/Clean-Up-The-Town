@@ -36,4 +36,4 @@ volume_db = -10.0
 
 [node name="MoneySFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_576ct")
-volume_db = -20.0
+volume_db = -10.0

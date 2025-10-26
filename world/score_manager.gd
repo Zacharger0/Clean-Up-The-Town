@@ -10,9 +10,9 @@ signal money_updated(new_money: int)
 signal money_tick
 signal timer_ended
 
-var total_trash_collected: int = 0
-var total_trash_value: int = 0
-var total_score: int = 0
+var total_trash_collected: int = 0   # Number of trash items picked up
+var total_trash_value: int = 0       # Hidden value for recycling (not shown)
+var total_score: int = 0             # Lifetime visible score
 var money: int = 0
 var game_time: float = 30.0
 
@@ -24,41 +24,59 @@ func _ready() -> void:
 	game_over_label.visible = false
 	_update_score_label()
 
+# ---------------------- ADD TRASH ----------------------
 func add_trash(value: int) -> void:
+	# Each trash = +1 item, but may have higher hidden value
 	total_trash_collected += 1
 	total_trash_value += value
 	total_score += value
+
 	trash_collected.emit(total_trash_collected)
 	score_updated.emit(total_score)
 	_update_score_label()
 
-func recycle_trash() -> void:
+# ---------------------- RECYCLE TRASH ----------------------
+func recycle_trash() -> Dictionary:
 	if total_trash_value <= 0:
-		return
+		return {"earned_money": 0, "bonus_multiplier": 1.0}
 
-	var earned_money: int = int(total_trash_value / 10)
-	var added_money := 0
-	var trash_remaining := total_trash_value
+	# --- Base conversion ---
+	var base_money := float(total_trash_value) / 10.0
 
-	while trash_remaining > 0:
-		await get_tree().create_timer(0.05).timeout
-		var decrease: int = min(2, trash_remaining)
-		trash_remaining -= decrease
-		total_trash_value = trash_remaining
-		total_trash_collected = trash_remaining
+	# --- Bonus multiplier tiers ---
+	var bonus_multiplier := 1.0
+	if total_trash_value >= 200:
+		bonus_multiplier = 1.5
+	elif total_trash_value >= 100:
+		bonus_multiplier = 1.25
+	elif total_trash_value >= 50:
+		bonus_multiplier = 1.15
+	elif total_trash_value >= 25:
+		bonus_multiplier = 1.10
 
-		if added_money < earned_money:
-			money += 1
-			added_money += 1
-			money_tick.emit()  # 👈 tell recycle bin to do visual + sfx
+	# --- Apply ---
+	var earned_money := int(base_money * bonus_multiplier)
+	money += earned_money
 
+	# Smoothly decrease trash_value to 0 over 1 second
+	var start_value := total_trash_value
+	var duration := 1.0
+	var step_time := 0.05
+	var steps := int(duration / step_time)
+
+	for i in range(steps):
+		await get_tree().create_timer(step_time).timeout
+		var t := float(i) / float(steps)
+		total_trash_value = int(lerp(start_value, 0, t))
 		_update_score_label()
 
 	total_trash_value = 0
-	total_trash_collected = 0
-	_update_score_label()
 	money_updated.emit(money)
+	_update_score_label()
 
+	return {"earned_money": earned_money, "bonus_multiplier": bonus_multiplier}
+
+# ---------------------- TIMER ----------------------
 func _on_game_timer_timeout() -> void:
 	game_time -= 1
 	if game_time <= 0:
@@ -67,6 +85,7 @@ func _on_game_timer_timeout() -> void:
 		_show_game_over()
 	_update_score_label()
 
+# ---------------------- UPDATE LABEL ----------------------
 func _update_score_label() -> void:
 	var minutes := int(game_time) / 60
 	var seconds := int(game_time) % 60
@@ -74,6 +93,7 @@ func _update_score_label() -> void:
 		total_score, total_trash_collected, money, minutes, seconds
 	]
 
+# ---------------------- GAME OVER ----------------------
 func _show_game_over() -> void:
 	game_over_label.text = "GAME OVER\nScore: %d" % total_score
 	game_over_label.visible = true
