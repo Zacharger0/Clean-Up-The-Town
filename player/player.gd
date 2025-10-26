@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var sfx_skateboard: AudioStreamPlayer2D = $SFX_Skateboard
 @onready var score_manager: Node = get_tree().get_first_node_in_group("score_manager")
 @onready var vacuum_area: Node = $VacuumArea
+@onready var vacuum_denied_sfx: AudioStreamPlayer2D = $VacuumDeniedSFX
 
 # --- Skateboard SFX ---
 var skate_min_pitch := 0.9
@@ -191,4 +192,5 @@ func _on_vacuum_denied() -> void:
 	if vacuum_area:
 		vacuum_area.shake_denied()
 	print("⛔ Vacuum still cooling down!")
-	# TODO: SFX — denied buzz
+	if vacuum_denied_sfx:
+		vacuum_denied_sfx.play()

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://eq2hnxardpds"
+path="res://.godot/imported/not available vacuum sfx.mp3-9f59e37ed41bb62195763d89bed96b68.mp3str"
+
+[deps]
+
+source_file="res://sfx/not available vacuum sfx.mp3"
+dest_files=["res://.godot/imported/not available vacuum sfx.mp3-9f59e37ed41bb62195763d89bed96b68.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

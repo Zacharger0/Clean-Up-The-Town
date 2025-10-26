@@ -3,7 +3,7 @@ extends Area2D
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var prompt_label: Label = $Label
 @onready var score_manager: Node = get_tree().get_first_node_in_group("score_manager")
-@onready var recycle_sfx: AudioStreamPlayer2D = $RecycleSFX
+@onready var recycle_sfx: AudioStreamPlayer2D = $Recycle
 @onready var money_sfx: AudioStreamPlayer2D = $MoneySFX
 
 var player_near := false

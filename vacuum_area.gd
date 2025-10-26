@@ -112,7 +112,7 @@ func _process(delta: float) -> void:
 		else:
 			sprite.scale = Vector2.ONE
 
-	# --- 💥 MULTI-TRASH VACUUM LOGIC ---
+	# --- MULTI-TRASH VACUUM LOGIC ---
 	if active:
 		for area in get_overlapping_areas():
 			if area.is_in_group("trash") and not area.is_being_vacuumed:
