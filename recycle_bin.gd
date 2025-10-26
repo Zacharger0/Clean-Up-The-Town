@@ -11,7 +11,6 @@ var hold_time := 0.0
 var required_hold_time := 3.0
 var recycling := false
 
-# ---------------- READY ----------------
 func _ready() -> void:
 	progress_bar.custom_minimum_size = Vector2(200, 20)
 
@@ -85,14 +84,12 @@ func _start_recycle_animation() -> void:
 		prompt_label.visible = true
 		return
 
-	# --- Play recycle SFX + shake ---
 	if recycle_sfx:
 		recycle_sfx.pitch_scale = randf_range(0.75, 1.25)
 		recycle_sfx.play()
 	_shake_bin()
 	_spawn_recycle_trash(total_value)
 
-	# --- Predict reward for immediate feedback ---
 	var base_money := int(total_value / 10)
 	var predicted_bonus := 1.0
 	if total_value >= 200:

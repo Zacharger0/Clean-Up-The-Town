@@ -3,6 +3,7 @@ extends Node
 @onready var score_label: Label = $ScoreLabel
 @onready var game_timer: Timer = $GameTimer
 @onready var game_over_label: Label = $GameOverLabel
+@onready var vacuum_cooldown_bar: ProgressBar = $VacuumCooldown
 
 signal score_updated(new_score: int)
 signal trash_collected(new_total: int)
@@ -26,7 +27,6 @@ func _ready() -> void:
 
 # ---------------------- ADD TRASH ----------------------
 func add_trash(value: int) -> void:
-	# Each trash = +1 item, but may have higher hidden value
 	total_trash_collected += 1
 	total_trash_value += value
 	total_score += value
@@ -40,10 +40,8 @@ func recycle_trash() -> Dictionary:
 	if total_trash_value <= 0:
 		return {"earned_money": 0, "bonus_multiplier": 1.0}
 
-	# --- Base conversion ---
 	var base_money := float(total_trash_value) / 10.0
 
-	# --- Bonus multiplier tiers ---
 	var bonus_multiplier := 1.0
 	if total_trash_value >= 200:
 		bonus_multiplier = 1.5
@@ -54,11 +52,10 @@ func recycle_trash() -> Dictionary:
 	elif total_trash_value >= 25:
 		bonus_multiplier = 1.10
 
-	# --- Apply ---
 	var earned_money := int(base_money * bonus_multiplier)
 	money += earned_money
 
-	# Smoothly decrease trash_value to 0 over 1 second
+	# --- Smooth trash drain (visual feedback) ---
 	var start_value := total_trash_value
 	var duration := 1.0
 	var step_time := 0.05
@@ -92,6 +89,16 @@ func _update_score_label() -> void:
 	score_label.text = "SCORE: %d | TRASH: %d | MONEY: $%d | TIME: %02d:%02d" % [
 		total_score, total_trash_collected, money, minutes, seconds
 	]
+
+# ---------------------- VACUUM COOLDOWN ----------------------
+func set_vacuum_cooldown(value: float) -> void:
+	if vacuum_cooldown_bar == null:
+		vacuum_cooldown_bar = get_node_or_null("VacuumCooldown")
+		if vacuum_cooldown_bar == null:
+			push_warning("⚠VacuumCooldown not found in ScoreManager!")
+			return
+	vacuum_cooldown_bar.value = clamp(value, 0.0, 1.0)
+	vacuum_cooldown_bar.visible = value < 1.0
 
 # ---------------------- GAME OVER ----------------------
 func _show_game_over() -> void:

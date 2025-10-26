@@ -8,9 +8,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unia5"]
 size = Vector2(6, 5)
 
-[node name="Cardboard Box" type="Area2D"]
+[node name="Cardboard Box" type="Area2D" groups=["trash"]]
 y_sort_enabled = true
 collision_layer = 4
+collision_mask = 32
 script = ExtResource("1_1sv8q")
 
 [node name="Scripting" type="Node2D" parent="."]

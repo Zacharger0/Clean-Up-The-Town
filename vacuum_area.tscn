@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdxi5e1edxaqw"]
+
+[ext_resource type="Script" uid="uid://bptawromcp760" path="res://vacuum_area.gd" id="1_2lc22"]
+[ext_resource type="Texture2D" uid="uid://bcqt2ryn78o5c" path="res://sprites/temp_vacuum.png" id="2_7qlpb"]
+
+[node name="VacuumArea" type="Area2D"]
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("1_2lc22")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7qlpb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1, 2)
+scale = Vector2(1.75, 1)
+polygon = PackedVector2Array(0, -2, 4, -77, 20, -75, 26, -75, 30, -74, 35, -71, 38, -62, 41, -55, 44, -40, 46, -20, 46, -9, 45, 15, 42, 21, 33, 31, 24, 38, 16, 47, 12, 52, 3, 51)

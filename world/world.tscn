@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnnngjnnpdd5j"]
+[gd_scene load_steps=18 format=3 uid="uid://bnnngjnnpdd5j"]
 
 [ext_resource type="Texture2D" uid="uid://bps5gmolkbsah" path="res://sprites/grass_background_1021.png" id="1_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://b0fjlhu8nq4gp" path="res://player/player.tscn" id="2_h5o24"]
@@ -13,6 +13,11 @@
 [ext_resource type="Script" uid="uid://cbfavaqycj5fj" path="res://world/score_manager.gd" id="11_ov2xu"]
 [ext_resource type="FontFile" uid="uid://b3awj0mmqutk1" path="res://VCR_OSD_MONO_1.001.ttf" id="12_mad0u"]
 [ext_resource type="PackedScene" uid="uid://bjoxvbfhshxge" path="res://scenes/recycle_bin.tscn" id="13_ocfjn"]
+
+[sub_resource type="Environment" id="Environment_ocfjn"]
+glow_enabled = true
+glow_intensity = 1.3
+glow_blend_mode = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4papg"]
 texture = ExtResource("7_ai45w")
@@ -99,6 +104,9 @@ sources/0 = SubResource("TileSetAtlasSource_4papg")
 [sub_resource type="LabelSettings" id="LabelSettings_ov2xu"]
 
 [node name="World" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ocfjn")
 
 [node name="Parallax Background" type="Parallax2D" parent="."]
 repeat_size = Vector2(480, 270)
@@ -1008,6 +1016,20 @@ theme_override_font_sizes/font_size = 30
 label_settings = SubResource("LabelSettings_ov2xu")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="VacuumCooldown" type="ProgressBar" parent="ScoreManager"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.5
+offset_top = -27.0
+offset_right = 37.5
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+value = 1.0
 
 [node name="RecycleBin" parent="." instance=ExtResource("13_ocfjn")]
 position = Vector2(52, 137)
